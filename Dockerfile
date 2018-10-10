@@ -9,4 +9,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
     tar zxf ${VER}.tar.gz && rm -rf ${VER}.tar.gz && \
     yarn global add forever
 
-CMD ["forever", "start", "DOClever-${VER}/Server/bin/www"]
+CMD ["bash", "-c", "forever start DOClever-${VER}/Server/bin/www"]
