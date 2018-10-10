@@ -6,7 +6,7 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates wget curl git && \
     wget -c https://github.com/sx1989827/DOClever/archive/${VER}.tar.gz && \
-    tar zxf ${VER}.tar.gz && \
-    yarn global add pm2 forever
+    tar zxf ${VER}.tar.gz && rm -rf ${VER}.tar.gz && \
+    yarn global add forever
 
-CMD ["forever", "start", "Server/bin/www"]
+CMD ["forever", "start", "DOClever-*/Server/bin/www"]
