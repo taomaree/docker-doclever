@@ -1,0 +1,30 @@
+version: '2.2'
+
+services:
+  doclever:
+    container_name: doclever
+    image: taomaree/doclever
+    ports:
+    - 10000:10000
+    environment:
+    - DB_HOST=mongodb://mongo:27017/DOClever
+    - PORT=10000
+    links:
+    - mongo:mongo
+    volumes:
+    - ./data/file:/data/file
+    
+  mongo:
+    image: mongo:4.0
+    restart: unless-stopped
+    container_name: "doclever-mongo"
+    command: mongod --smallfiles --oplogSize 128 --replSet rep --storageEngine=wiredTiger
+    volumes:
+    - ./data/db:/data/db
+
+  mongo-init-replica:
+    image: mongo:4.0
+    container_name: "doclever-mongo-init"
+    command: ["bash", "-c", 'sleep 10 && mongo mongo/DOClever --eval "rs.initiate({ _id: ''rep'', members: [ { _id: 0, host: ''localhost:27017'' } ]})"']
+    depends_on:
+      - mongo
