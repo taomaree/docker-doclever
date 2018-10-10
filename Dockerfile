@@ -11,4 +11,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
     tar zxf ${VER}.tar.gz && rm -rf ${VER}.tar.gz && \
     yarn global add forever
 
+
 CMD ["bash", "-c", "forever start DOClever-${VER}/Server/bin/www --db $DB_HOST --file $DB_FILE --img $DB_IMG --temp $DB_TEMP --port $PORT"]
