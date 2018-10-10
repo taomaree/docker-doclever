@@ -9,11 +9,13 @@ services:
     environment:
     - DB_HOST=mongodb://mongo:27017/DOClever
     - PORT=10000
-    - UPLOAD_FILEPATH=/data/file
+    - DB_FILE=/data/file
+    - DB_IMG=/data/img
+    - DB_TEMP=/data/temp
     links:
     - mongo:mongo
     volumes:
-    - ./data/file:/data/file
+    - /srv/doclever/data:/data
     
   mongo:
     image: mongo:4.0
@@ -21,7 +23,7 @@ services:
     container_name: "doclever-mongo"
     command: mongod --smallfiles --oplogSize 128 --replSet rep --storageEngine=wiredTiger
     volumes:
-    - ./data/db:/data/db
+    - ./srv/doclever/db:/data/db
 
   mongo-init-replica:
     image: mongo:4.0
