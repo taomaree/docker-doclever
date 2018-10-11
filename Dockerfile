@@ -12,4 +12,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
     yarn global add forever
 
 
-CMD ["bash", "-c", "forever start DOClever-${VER}/Server/bin/www --db $DB_HOST --file $DB_FILE --img $DB_IMG --temp $DB_TEMP --port $PORT"]
+CMD ["bash", "-c", "node DOClever-${VER}/Server/bin/www --db $DB_HOST --file $DB_FILE --img $DB_IMG --temp $DB_TEMP --port $PORT"]
