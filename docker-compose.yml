@@ -14,6 +14,7 @@ services:
     - DB_TEMP=/data/temp
     links:
     - mongo:mongo
+    command: ["bash", "-c", "node DOClever-$${VER}/Server/bin/www --db $${DB_HOST} --file $${DB_FILE} --img $${DB_IMG} --temp $${DB_TEMP} --port $${PORT}"]
     volumes:
     - /srv/doclever/data:/data
     
@@ -23,7 +24,7 @@ services:
     container_name: "doclever-mongo"
     command: mongod --smallfiles --oplogSize 128 --replSet rep --storageEngine=wiredTiger
     volumes:
-    - ./srv/doclever/db:/data/db
+    - /srv/doclever/db:/data/db
 
   mongo-init-replica:
     image: mongo:4.0
