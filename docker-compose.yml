@@ -3,7 +3,7 @@ version: '2.2'
 services:
   doclever:
     container_name: doclever
-    image: taomaree/doclever
+    image: taomaree/doclever:6.2.0
     ports:
     - 10000:10000
     environment:
