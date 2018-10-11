@@ -14,7 +14,7 @@ services:
     - DB_TEMP=/data/temp
     links:
     - mongo:mongo
-    command: ["bash", "-c", "node DOClever-$${VER}/Server/bin/www --db $${DB_HOST} --file $${DB_FILE} --img $${DB_IMG} --temp $${DB_TEMP} --port $${PORT}"]
+    command: ["bash", "-c", "sleep 30 && node DOClever-$${VER}/Server/bin/www --db $${DB_HOST} --file $${DB_FILE} --img $${DB_IMG} --temp $${DB_TEMP} --port $${PORT}"]
     volumes:
     - /srv/doclever/data:/data
     
