@@ -22,6 +22,8 @@ services:
     image: mongo:4.0
     restart: unless-stopped
     container_name: "doclever-mongo"
+    #ports:
+    #- 50007:27017
     command: mongod --smallfiles --oplogSize 128 --replSet rep --storageEngine=wiredTiger
     volumes:
     - /srv/doclever/db:/data/db
